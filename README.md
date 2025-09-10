@@ -111,6 +111,7 @@ Start Menu Styler mod. The following themes are available:
 | [LegacyFluent](Themes/LegacyFluent/README.md) | [![LegacyFluent](Themes/LegacyFluent/screenshot-small.png)](Themes/LegacyFluent/screenshot.png)
 | [OnlySearch](Themes/OnlySearch/README.md) | [![OnlySearch](Themes/OnlySearch/screenshot-small.png)](Themes/OnlySearch/screenshot.png)
 | [WindowGlass](Themes/WindowGlass/README.md) | [![WindowGlass](Themes/WindowGlass/screenshot-small.png)](Themes/WindowGlass/screenshot.png)
+| [ModernStartMenu](Themes/ModernStartMenu/README.md) | [![ModernStartMenu](Themes/ModernStartMenu/screenshot-small.png)](Themes/ModernStartMenu/screenshot.png)
 
 
 ## Custom Acrylic background
