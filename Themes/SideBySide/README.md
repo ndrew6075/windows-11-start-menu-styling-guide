@@ -1,6 +1,6 @@
 # SideBySide theme for Windows 11 Start Menu Styler
 
-**Author**: [kaoshipaws](https://k4oshi.top/)
+**Author**: [kaoshipaws](https://k4oshi.top/) (classic Start menu), [m417z](https://github.com/m417z) (redesigned Start menu)
 
 ![Screenshot](screenshot.png)
 
@@ -147,7 +147,8 @@ controlStyles:
 
 ## Removing the "Recommended" section
 
-The "Recommended" section can be removed by following these steps:
+For the classic Start menu, the "Recommended" section can be removed by
+following these steps:
 
 * Import [the NoRecommendedSection
   theme](https://github.com/ramensoftware/windows-11-start-menu-styling-guide/blob/main/Themes/NoRecommendedSection/README.md)
