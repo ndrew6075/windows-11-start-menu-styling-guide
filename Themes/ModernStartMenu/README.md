@@ -102,11 +102,11 @@ controlStyles:
       - Margin@Apps=12,29,27,0
       - Margin@Classic=12,29,0,0
       - FontWeight=Semibold
-  - target: Button#Header > Border > TextBlock
+  - target: Button > Border > TextBlock
     styles:
       - FontSize=14
       - FontWeight=SemiBold
-      - Margin=0,0,-16,2
+      - Margin=12,0,0,2
       - FontFamily=$fontFamily
   - target: Border#GridPane
     styles:
@@ -262,7 +262,8 @@ controlStyles:
       - CornerRadius=0,4,4,0
   - target: MenuFlyoutPresenter
     styles:
-      - MinWidth=165
+      - Width=Auto
+      - MinWidth=0
       - CornerRadius=8
       - Background:=$background
   - target: JumpViewUI.ItemNotFoundFlyoutControl > StackPanel > TextBlock
@@ -309,21 +310,23 @@ controlStyles:
       - FontFamily=$fontFamily
   - target: MenuFlyoutItem
     styles:
+      - FontFamily=$fontFamily
+      - FontSize=14
       - CornerRadius=4
-      - Margin=3,-1,3,0
+      - Margin=3,0,3,0
   - target: MenuFlyoutSubItem
     styles:
-      - CornerRadius=4
-      - FontSize=14
-      - Margin=3,0,3,0
       - FontFamily=$fontFamily
+      - FontSize=14
+      - CornerRadius=4
+      - Margin=3,0,3,0
       - MinHeight=30
   - target: ToggleMenuFlyoutItem
     styles:
-      - CornerRadius=4
-      - FontSize=14
-      - Margin=3,0,3,0
       - FontFamily=$fontFamily
+      - FontSize=14
+      - CornerRadius=4
+      - Margin=3,0,3,0
       - MinHeight=30
   - target: StackPanel > Button#DeleteButton
     styles:
@@ -403,17 +406,24 @@ controlStyles:
       - Margin=12,6,0,6
   - target: MenuFlyoutItem > Grid@CommonStates
     styles:
-      - Padding=12,0,0,0
+      - Padding=12,0,12,0
       - MinHeight=30
       - Background@PointerOver:=$menuPointerOver
       - Background@Pressed:=$menuPressed
-      - MinWidth=208
+      - BorderBrush=Transparent
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
   - target: ToggleMenuFlyoutItem > Grid@CommonStates
     styles:
-      - Padding=12,0,0,0
+      - Padding=12,0,12,0
       - Height=28
       - Background@PointerOver:=$menuPointerOver
       - Background@Pressed:=$menuPressed
+      - BorderBrush=Transparent
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
   - target: TextBlock#ShutdownConfirmationTextBlock
     styles:
       - FontFamily=$fontFamily
@@ -511,7 +521,11 @@ controlStyles:
     styles:
       - Background@SubMenuOpened:=$menuPointerOver
       - Background@PointerOver:=$menuPointerOver
-      - Padding=12,0,0,0
+      - BorderBrush=Transparent
+      - Padding=12,0,12,0
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
   - target: Viewbox > Border > TextBlock
     styles:
       - FontWeight=SemiBold
@@ -528,16 +542,21 @@ controlStyles:
     styles:
       - Background@PointerOver:=$menuPointerOver
       - Background@Pressed:=$menuPressed
+      - BorderBrush=Transparent
+      - Padding=0,0,12,0
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
   - target: Button#PinButton
     styles:
-      - MinWidth=44
+      - Width=44
+      - Margin=12,0,-12,0
   - target: Button#PinButton > Grid@CommonStates > * > TextBlock
     styles:
       - Margin=3,0,0,0
       - Opacity@Pressed=0.75
   - target: FontIcon#SubItemChevron
     styles:
-      - Margin=-30,0,0,0
       - Glyph:=&#xE76C;
   - target: Border#SmallLogo
     styles:
@@ -589,6 +608,7 @@ controlStyles:
       - Background@Selected:=$menuPointerOver
       - Background@SelectedPressed:=$menuPressed
       - Background@SelectedPointerOver:=$menuPointerOver
+      - BorderBrush=Transparent
   - target: Border#PopupBorder
     styles:
       - Background:=$background
@@ -784,6 +804,9 @@ controlStyles:
       - Background=Transparent
   - target: StartUI.TileFolderNameTextBox > Grid@CommonStates > Border > TextBlock#PlaceholderTextContentPresenter
     styles:
+      - FontFamily=$fontFamily
+      - FontWeight=SemiBold
+      - FontSize=14
       - Margin=2,-4,0,0
       - Opacity@Normal=0
       - Opacity@PointerOver=1
@@ -828,9 +851,14 @@ controlStyles:
   - target: Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > Grid > TextBlock#StatusMessage[Text=System]
     styles:
       - Visibility=1
-  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel
+  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#ExpandCollapseButtonText
     styles:
-      - Margin=9,0,0,0
+      - Margin=16,0,0,0
+      - FontFamily=$fontFamily
+  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#FolderGlyph
+    styles:
+      - Margin=16,2,0,0
+      - FontFamily=Segoe Fluent Icons
   - target: Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#FolderGlyph
     styles:
       - Margin=9,0,0,0
@@ -846,6 +874,14 @@ controlStyles:
     styles:
       - Background:=$background
   - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > Grid
+    styles:
+      - CornerRadius=6
+      - Background@Normal=Transparent
+      - Background@PointerOver:=$listPointerOver
+      - Background@Pressed:=$listPressed
+      - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
+      - BackgroundSizing=InnerBorderEdge
+  - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > StackPanel
     styles:
       - CornerRadius=6
       - Background@Normal=Transparent
@@ -879,20 +915,24 @@ controlStyles:
       - BackgroundSizing=InnerBorderEdge
       - MinWidth=46
       - MinHeight=46
-  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=RecentList] > StackPanel > Button > Border
+  - target: StartUI.TileFolderNameTextBox > Grid@CommonStates > Border > ScrollViewer
     styles:
-      - Padding=12,0,0,10
-  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=FrequentList] > StackPanel > Button > Border
-    styles:
-      - Padding=12,0,0,10
-  - target: StartUI.TileFolderNameTextBox
-    styles:
-      - FontWeight=SemiBold
-  - target: StartUI.TileFolderNameTextBox > Grid@CommonStates > * > ScrollContentPresenter
-    styles:
-      - Margin@Focused=-1,-1,0,0
-      - FontFamily=$fontFamily
+      - Margin@Normal=3,-4,0,0
+      - Margin@PointerOver=3,-4,0,0
+      - Margin@Focused=2,-5,0,0
+      - FontFamily=Segoe UI Variable Display
       - FontSize=14
+      - FontWeight=SemiBold
+  - target: Grid#LogoOverlay
+    styles:
+      - Margin=12,6,0,6
+      - Opacity=0.5
+  - target: FontIcon#WindowsUpdatePendingReminder
+    styles:
+      - Foreground=#FF9900
+  - target: FontIcon#IconOverlay
+    styles:
+      - Foreground=#FF9900
 themeResourceVariables:
   - AccentColor@Dark={ThemeResource SystemAccentColorLight2}
   - AccentColor@Light={ThemeResource SystemAccentColorDark1}
