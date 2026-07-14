@@ -26,9 +26,17 @@ If you're already using the Windows 10 Start menu, you can skip this step.
 
 ![Screenshot](3d_remnant.png)
 
+* Number of unread notifications badge is static.
+
+![Screenshot](badge_static.png)
+
 * Tiles have a broken background when dragged from applist.
 
 ![Screenshot](tiles_broken.png)
+
+* When no tiles are pinned, or when "Show more tiles" is enabled and the applist is hidden (ExplorerPatcher), the scrollbar for applist does not align correctly.
+
+![Screenshot](scrollbar_misalign.png)
 
 * Right-click menus in textbox are not styled correctly.
 
@@ -82,8 +90,9 @@ styleConstants:
   - tilesBorderBrushPointerOver=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPointerOver}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPointerOver}" Offset="1" /></LinearGradientBrush>
   - tilesBorderBrushPressed=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPressed}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPressed}" Offset="1" /></LinearGradientBrush>
   - textboxBorderHover=<SolidColorBrush Color="{ThemeResource TextBoxBorderBrushHover}" />
-  - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.6" /><GradientStop Color="{ThemeResource AccentColor}" Offset="1" /></LinearGradientBrush>
+  - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.57" /><GradientStop Color="{ThemeResource AccentColor}" Offset="1" /></LinearGradientBrush>
   - fontFamily=Segoe UI Variable
+  - glyph=Segoe Fluent Icons
 controlStyles:
   - target: Border#AcrylicBorder
     styles:
@@ -97,11 +106,6 @@ controlStyles:
       - FontSize=14
       - FontFamily=$fontFamily
       - Margin=3,0,0,-6
-  - target: Grid#RootGrid@ContentPaneStates > * > StartUI.AllAppsPane
-    styles:
-      - Margin@Apps=12,29,27,0
-      - Margin@Classic=12,29,0,0
-      - FontWeight=Semibold
   - target: Button > Border > TextBlock
     styles:
       - FontSize=14
@@ -121,12 +125,6 @@ controlStyles:
       - FontSize=12
       - Margin=0,0,0,5
       - FontFamily=$fontFamily
-  - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter
-    styles:
-      - PointerOverBackground:=
-      - PressedBackground:=
-      - RevealBorderBrush:=
-      - RevealBackground:=
   - target: StartUI.NavigationPaneGrid
     styles:
       - CornerRadius=8,0,0,8
@@ -246,9 +244,6 @@ controlStyles:
       - Background@PointerOverSelected:=$listPointerOver
       - CornerRadius=6
       - BorderThickness=0
-  - target: StartUI.AllAppsGridListViewItem
-    styles:
-      - CornerRadius=6
   - target: Button#Header
     styles:
       - CornerRadius=6
@@ -476,12 +471,12 @@ controlStyles:
       - RadiusY=2
       - Canvas.ZIndex=5
       - Fill@PointerOverSelected:=$accentButtonNormal
-  - target: 'StartUI.NavigationPaneGrid > StartUI.UserTileView > StartUI.NavigationPaneButton#UserTileButton '
+  - target: StartUI.NavigationPaneGrid > StartUI.UserTileView > StartUI.NavigationPaneButton#UserTileButton
     styles:
       - Margin=6
       - Height=36
       - CornerRadius=6
-  - target: 'StartUI.NavigationPaneGrid > StartUI.PowerOptionsView > StartUI.NavigationPaneButton#PowerButton '
+  - target: StartUI.NavigationPaneGrid > StartUI.PowerOptionsView > StartUI.NavigationPaneButton#PowerButton
     styles:
       - Margin=6
       - Height=36
@@ -555,6 +550,7 @@ controlStyles:
     styles:
       - Margin=3,0,0,0
       - Opacity@Pressed=0.75
+      - FontFamily=$glyph
   - target: FontIcon#SubItemChevron
     styles:
       - Glyph:=&#xE76C;
@@ -654,11 +650,11 @@ controlStyles:
     styles:
       - FontSize=11
       - FontWeight=Light
-      - FontFamily=Segoe Fluent Icons
+      - FontFamily=$glyph
   - target: ItemsWrapGrid > StartUI.AllAppsZoomListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > Border > TextBlock
     styles:
       - FontWeight=Light
-      - FontFamily=Segoe Fluent Icons
+      - FontFamily=$glyph
   - target: Grid#MainGrid@InteractionStates > Rectangle#BackgroundElement
     styles:
       - Fill@InteractionState_Edit:=
@@ -702,7 +698,7 @@ controlStyles:
       - BorderBrush=Transparent
   - target: FontIcon
     styles:
-      - FontFamily=Segoe Fluent Icons
+      - FontFamily=$glyph
       - Foreground:=<SolidColorBrush Color="{ThemeResource SystemBaseHighColor}" />
   - target: Grid#ContentRoot
     styles:
@@ -853,12 +849,14 @@ controlStyles:
       - Visibility=1
   - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#ExpandCollapseButtonText
     styles:
-      - Margin=16,0,0,0
+      - Margin=8,0,0,0
+      - FontSize=12
       - FontFamily=$fontFamily
   - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#FolderGlyph
     styles:
-      - Margin=16,2,0,0
-      - FontFamily=Segoe Fluent Icons
+      - Margin=8,2,0,0
+      - Padding=0,0,8,0
+      - FontFamily=$glyph
   - target: Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#FolderGlyph
     styles:
       - Margin=9,0,0,0
@@ -867,12 +865,26 @@ controlStyles:
       - Visibility=1
   - target: ComboBox > Grid@CommonStates > FontIcon#DropDownGlyph
     styles:
-      - FontFamily=Segoe Fluent Icons
+      - FontFamily=$glyph
       - Opacity@Pressed=0.75
       - Foreground:=<SolidColorBrush Color="{ThemeResource SystemBaseHighColor}" />
   - target: JumpViewUI.ControlHostMenuFlyoutPresenter
     styles:
       - Background:=$background
+  - target: StartUI.AllAppsGridListViewItem
+    styles:
+      - CornerRadius=6
+  - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter
+    styles:
+      - PointerOverBackground:=
+      - PressedBackground:=
+      - RevealBorderBrush=Transparent
+      - RevealBackground:=
+  - target: Grid#RootGrid@ContentPaneStates > * > StartUI.AllAppsPane
+    styles:
+      - Margin@Apps=12,29,27,0
+      - Margin@Classic=12,29,0,0
+      - FontWeight=SemiBold
   - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > Grid
     styles:
       - CornerRadius=6
@@ -881,19 +893,35 @@ controlStyles:
       - Background@Pressed:=$listPressed
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
+      - BorderBrush=Transparent
+  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton]
+    styles:
+      - CornerRadius=4
+      - MinWidth=0
+      - MinHeight=0
+      - HorizontalAlignment=0
+      - VerticalAlignment=1
+      - Margin=14,0,0,0
   - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > StackPanel
     styles:
-      - CornerRadius=6
-      - Background@Normal=Transparent
-      - Background@PointerOver:=$listPointerOver
-      - Background@Pressed:=$listPressed
+      - CornerRadius=4
+      - Background@Normal:=$buttonNormal
+      - Background@PointerOver:=$buttonPointerOver
+      - Background@Pressed:=$buttonPressed
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
+      - BorderBrush:=$buttonBorderBrush
+      - BorderThickness=1
+      - Width=Auto
+      - Height=24
+      - MinWidth=0
+      - HorizontalAlignment=0
+      - VerticalAlignment=1
   - target: StartUI.AllAppsZoomListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter
     styles:
       - PointerOverBackground:=
       - PressedBackground:=
-      - RevealBorderBrush:=
+      - RevealBorderBrush=Transparent
       - RevealBackground:=
   - target: StartUI.AllAppsZoomListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > Border
     styles:
@@ -903,6 +931,7 @@ controlStyles:
       - Background@Pressed:=$listPressed
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
+      - BorderBrush=Transparent
       - MinWidth=46
       - MinHeight=46
   - target: StartUI.AllAppsZoomListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > Viewbox > Border
@@ -913,6 +942,7 @@ controlStyles:
       - Background@Pressed:=$listPressed
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
+      - BorderBrush=Transparent
       - MinWidth=46
       - MinHeight=46
   - target: StartUI.TileFolderNameTextBox > Grid@CommonStates > Border > ScrollViewer
@@ -933,6 +963,32 @@ controlStyles:
   - target: FontIcon#IconOverlay
     styles:
       - Foreground=#FF9900
+  - target: StartUI.TileListViewItem
+    styles:
+      - CornerRadius=8
+  - target: TextBlock#ErrorBadge
+    styles:
+      - Text=
+      - FontFamily=$glyph
+  - target: TextBlock#Badge
+    styles:
+      - Text=
+      - FontSize=12
+      - FontFamily=$glyph
+      - Foreground:=$accentButtonNormal
+      - VerticalAlignment=0
+      - Margin=0,8,0,0
+  - target: TextBlock#Incoming_Badge
+    styles:
+      - Text=
+      - FontSize=12
+      - FontFamily=$glyph
+      - Foreground:=$accentButtonNormal
+      - VerticalAlignment=0
+      - Margin=0,8,0,0
+  - target: Rectangle#Small_Tile_Overlay
+    styles:
+      - Opacity=0
 themeResourceVariables:
   - AccentColor@Dark={ThemeResource SystemAccentColorLight2}
   - AccentColor@Light={ThemeResource SystemAccentColorDark1}
@@ -973,19 +1029,19 @@ themeResourceVariables:
   - TilesFillPressed@Dark=#0BFFFFFF
   - TilesFillPressed@Light=#80FFFFFF
   - TilesBorderBrushBottomGradientNormal@Dark=#0EFFFFFF
-  - TilesBorderBrushBottomGradientNormal@Light=#1A000000
+  - TilesBorderBrushBottomGradientNormal@Light=#0D000000
   - TilesBorderBrushBottomGradientPointerOver@Dark=#25FFFFFF
-  - TilesBorderBrushBottomGradientPointerOver@Light=#26000000
+  - TilesBorderBrushBottomGradientPointerOver@Light=#0D000000
   - TilesBorderBrushBottomGradientPressed@Dark=#0BFFFFFF
-  - TilesBorderBrushBottomGradientPressed@Light=#1A000000
-  - TilesBorderBrushTopGradientNormal@Dark=#33FFFFFF
+  - TilesBorderBrushBottomGradientPressed@Light=#0D000000
+  - TilesBorderBrushTopGradientNormal@Dark=#1AFFFFFF
   - TilesBorderBrushTopGradientNormal@Light=#80FFFFFF
-  - TilesBorderBrushTopGradientPointerOver@Dark=#4DFFFFFF
+  - TilesBorderBrushTopGradientPointerOver@Dark=#33FFFFFF
   - TilesBorderBrushTopGradientPointerOver@Light=#FAFFFFFF
-  - TilesBorderBrushTopGradientPressed@Dark=#26FFFFFF
+  - TilesBorderBrushTopGradientPressed@Dark=#1AFFFFFF
   - TilesBorderBrushTopGradientPressed@Light=#80FFFFFF
-  - TextBoxBorderBrushHover@Dark=#33FFFFFF
-  - TextBoxBorderBrushHover@Light=#1A000000
+  - TextBoxBorderBrushHover@Dark=#1AFFFFFF
+  - TextBoxBorderBrushHover@Light=#0D000000
   - TextBoxBG@Dark={ThemeResource SystemChromeLowColor}
   - TextBoxBG@Light={ThemeResource SystemAltHighColor}
 ```
