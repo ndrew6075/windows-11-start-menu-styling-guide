@@ -90,7 +90,7 @@ styleConstants:
   - tilesBorderBrushPointerOver=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPointerOver}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPointerOver}" Offset="1" /></LinearGradientBrush>
   - tilesBorderBrushPressed=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPressed}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPressed}" Offset="1" /></LinearGradientBrush>
   - textboxBorderHover=<SolidColorBrush Color="{ThemeResource TextBoxBorderBrushHover}" />
-  - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.57" /><GradientStop Color="{ThemeResource AccentColor}" Offset="1" /></LinearGradientBrush>
+  - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.6" /><GradientStop Color="{ThemeResource AccentColor}" Offset="1" /></LinearGradientBrush>
   - fontFamily=Segoe UI Variable
   - glyph=Segoe Fluent Icons
 controlStyles:
@@ -989,6 +989,10 @@ controlStyles:
   - target: Rectangle#Small_Tile_Overlay
     styles:
       - Opacity=0
+  - target: FontIcon#CheckGlyph
+    styles:
+      - FontFamily=$glyph
+      - Glyph:=&#xE73E;
 themeResourceVariables:
   - AccentColor@Dark={ThemeResource SystemAccentColorLight2}
   - AccentColor@Light={ThemeResource SystemAccentColorDark1}
