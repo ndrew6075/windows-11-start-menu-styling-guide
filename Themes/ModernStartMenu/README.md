@@ -34,10 +34,6 @@ If you're already using the Windows 10 Start menu, you can skip this step.
 
 ![Screenshot](tiles_broken.png)
 
-* When no tiles are pinned, or when "Show more tiles" is enabled and the applist is hidden (ExplorerPatcher), the scrollbar for applist does not align correctly.
-
-![Screenshot](scrollbar_misalign.png)
-
 * Right-click menus in textbox are not styled correctly.
 
 ![Screenshot](group_textbox.png)
@@ -91,6 +87,7 @@ styleConstants:
   - tilesBorderBrushPressed=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPressed}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPressed}" Offset="1" /></LinearGradientBrush>
   - textboxBorderHover=<SolidColorBrush Color="{ThemeResource TextBoxBorderBrushHover}" />
   - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.6" /><GradientStop Color="{ThemeResource AccentColor}" Offset="1" /></LinearGradientBrush>
+  - errorBadge=<SolidColorBrush Color="{ThemeResource ErrorBadge}" />
   - fontFamily=Segoe UI Variable
   - glyph=Segoe Fluent Icons
 controlStyles:
@@ -206,7 +203,7 @@ controlStyles:
     styles:
       - Background@PointerOver:=$listPointerOver
       - Background@Pressed:=$listPressed
-      - CornerRadius=7
+      - CornerRadius=6
       - BorderBrush=Transparent
       - Background=Transparent
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
@@ -221,7 +218,7 @@ controlStyles:
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
       - CornerRadius=6
-      - Margin=-1,0,-1,0
+      - Margin=-1,-2,-1,0
   - target: StartUI.NavigationPaneButton#UserTileButton > ContentPresenter@CommonStates
     styles:
       - Background@PointerOver:=$listPointerOver
@@ -231,7 +228,7 @@ controlStyles:
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
       - CornerRadius=6
-      - Margin=-1,0,-1,0
+      - Margin=-1
   - target: Grid#RootPanel@CommonStates > ContentPresenter
     styles:
       - BorderBrush=Transparent
@@ -297,7 +294,7 @@ controlStyles:
     styles:
       - Width=32
       - Height=32
-      - Margin=1,0,0,2
+      - Margin=0,0,0,2
   - target: MenuFlyoutItem > * > Grid > StackPanel > TextBlock#TextBlock
     styles:
       - FontSize=14
@@ -308,7 +305,7 @@ controlStyles:
       - FontFamily=$fontFamily
       - FontSize=14
       - CornerRadius=4
-      - Margin=3,0,3,0
+      - Margin=3,-1,3,0
   - target: MenuFlyoutSubItem
     styles:
       - FontFamily=$fontFamily
@@ -336,7 +333,7 @@ controlStyles:
   - target: StartUI.NavigationPaneBadgeView > Grid
     styles:
       - Margin=-16,-23,0,7
-  - target: StartUI.NavigationPaneBadgeView > Grid > Windows.UI.Xaml.Shapes.Rectangle
+  - target: StartUI.NavigationPaneBadgeView > Grid > Rectangle
     styles:
       - Fill:=$accentButtonNormal
       - Stroke:=$accentButtonNormal
@@ -471,25 +468,25 @@ controlStyles:
       - RadiusY=2
       - Canvas.ZIndex=5
       - Fill@PointerOverSelected:=$accentButtonNormal
-  - target: StartUI.NavigationPaneGrid > StartUI.UserTileView > StartUI.NavigationPaneButton#UserTileButton
+  - target: StartUI.NavigationPaneButton#UserTileButton
     styles:
       - Margin=6
-      - Height=36
+      - Height=34
       - CornerRadius=6
-  - target: StartUI.NavigationPaneGrid > StartUI.PowerOptionsView > StartUI.NavigationPaneButton#PowerButton
+  - target: StartUI.NavigationPaneButton#PowerButton
     styles:
-      - Margin=6
-      - Height=36
+      - Margin=6,6.5,6,5
+      - Height=34
       - CornerRadius=6
   - target: StartUI.ViewSelectionListViewItem
     styles:
       - Margin=6
-      - Height=36
+      - Height=34
       - CornerRadius=6
   - target: StartUI.AppListViewItem
     styles:
       - Margin=6
-      - Height=36
+      - Height=34
       - CornerRadius=6
   - target: StartUI.AppListViewItem > Grid#RootPanel@CommonStates > * > FontIcon
     styles:
@@ -874,17 +871,38 @@ controlStyles:
   - target: StartUI.AllAppsGridListViewItem
     styles:
       - CornerRadius=6
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
   - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter
     styles:
       - PointerOverBackground:=
       - PressedBackground:=
       - RevealBorderBrush=Transparent
       - RevealBackground:=
-  - target: Grid#RootGrid@ContentPaneStates > * > StartUI.AllAppsPane
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
+  - target: StartUI.StartSizingFrame[MinWidth=320] > * > StartUI.AllAppsPane
     styles:
-      - Margin@Apps=12,29,27,0
-      - Margin@Classic=12,29,0,0
+      - Margin=0,29,-8,0
+  - target: StartUI.StartSizingFrame[MinWidth=392] > * > StartUI.AllAppsPane
+    styles:
+      - Margin=0,29,27,0
+  - target: StartUI.StartSizingFrame[MinWidth=480] > * > StartUI.AllAppsPane
+    styles:
+      - Margin=0,29,0,0
+  - target: StartUI.StartSizingFrame[MinWidth=648] > * > StartUI.AllAppsPane
+    styles:
+      - Margin=0,29,0,0
+  - target: StartUI.StartSizingFrame[MinWidth=752] > * > StartUI.AllAppsPane
+    styles:
+      - Margin=0,29,0,0
+  - target: StartUI.AllAppsPane
+    styles:
+      - Padding=12,0,0,0
       - FontWeight=SemiBold
+      - FontFamily=$fontFamily
   - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > Grid
     styles:
       - CornerRadius=6
@@ -894,6 +912,9 @@ controlStyles:
       - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
       - BackgroundSizing=InnerBorderEdge
       - BorderBrush=Transparent
+      - Width=Auto
+      - MinWidth=0
+      - HorizontalAlignment=3
   - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton]
     styles:
       - CornerRadius=4
@@ -970,9 +991,12 @@ controlStyles:
     styles:
       - Text=
       - FontFamily=$glyph
+      - Foreground:=$errorBadge
+      - VerticalAlignment=0
+      - Margin=0,8,0,0
   - target: TextBlock#Badge
     styles:
-      - Text=
+      - Text=
       - FontSize=12
       - FontFamily=$glyph
       - Foreground:=$accentButtonNormal
@@ -980,7 +1004,7 @@ controlStyles:
       - Margin=0,8,0,0
   - target: TextBlock#Incoming_Badge
     styles:
-      - Text=
+      - Text=
       - FontSize=12
       - FontFamily=$glyph
       - Foreground:=$accentButtonNormal
@@ -998,6 +1022,8 @@ themeResourceVariables:
   - AccentColor@Light={ThemeResource SystemAccentColorDark1}
   - AccentButtonBorder@Dark={ThemeResource SystemAccentColorLight1}
   - AccentButtonBorder@Light={ThemeResource SystemAccentColorDark2}
+  - ErrorBadge@Dark=#FF99A4
+  - ErrorBadge@Light=#C42B1C
   - ButtonFillNormal@Dark=#0FFFFFFF
   - ButtonFillNormal@Light=#B3FFFFFF
   - ButtonFillPointerOver@Dark=#15FFFFFF
