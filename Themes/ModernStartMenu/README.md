@@ -6,6 +6,7 @@ ModernStartMenu is a Fluent start menu theme designed for Windows 10 Start menu 
 
 ![Screenshot](screenshot_demo.png)
 ![Screenshot](screenshot_tiles.png)
+![Screenshot](screenshot_applist.png)
 
 ## Enabling Windows 10 Start menu on Windows 11
 
@@ -33,6 +34,10 @@ If you're already using the Windows 10 Start menu, you can skip this step.
 * Tiles have a broken background when dragged from applist.
 
 ![Screenshot](tiles_broken.png)
+
+* When no tiles are pinned, the applist's scrollbar is misaligned.
+
+![Screenshot](scrollbar_misalign.png)
 
 * Right-click menus in textbox are not styled correctly.
 
@@ -190,10 +195,6 @@ controlStyles:
       - FontWeight=Normal
       - Foreground:=<SolidColorBrush Color="{ThemeResource SystemAltHighColor}" />
       - Opacity@Pressed=0.75
-  - target: TextBlock#StatusMessage
-    styles:
-      - Margin=20,0,0,0
-      - FontFamily=$fontFamily
   - target: Rectangle#SelectionRectangle
     styles:
       - RadiusX=2
@@ -391,8 +392,11 @@ controlStyles:
       - CornerRadius=4
   - target: StartUI.StartSizingFramePanel
     styles:
-      - Margin=13
+      - Margin=0,0,0,12
       - CornerRadius=8
+  - target: StartUI.StartSizingFrame
+    styles:
+      - Margin=12,0,0,0
   - target: Border#LogoBackgroundPlate
     styles:
       - Margin=12,6,0,6
@@ -841,22 +845,23 @@ controlStyles:
     styles:
       - RadiusX=6
       - RadiusY=6
-  - target: Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > Grid > TextBlock#StatusMessage[Text=System]
+  - target: TextBlock#StatusMessage[Text=System]
     styles:
       - Visibility=1
-  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#ExpandCollapseButtonText
+  - target: TextBlock#StatusMessage
     styles:
-      - Margin=8,0,0,0
+      - Margin=20,0,0,0
       - FontSize=12
       - FontFamily=$fontFamily
-  - target: StartUI.AllAppsGridListViewItem[AutomationProperties.AutomationId=ExpandCollapseButton] > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#FolderGlyph
+      - Foreground:=$accentButtonNormal
+  - target: TextBlock#ExpandCollapseButtonText
     styles:
-      - Margin=8,2,0,0
-      - Padding=0,0,8,0
+      - Margin=8,0,2,0
+      - FontSize=12
+      - FontFamily=$fontFamily
+  - target: TextBlock#FolderGlyph
+    styles:
       - FontFamily=$glyph
-  - target: Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter > StackPanel > TextBlock#FolderGlyph
-    styles:
-      - Margin=9,0,0,0
   - target: FontIcon#Gripper
     styles:
       - Visibility=1
@@ -883,24 +888,9 @@ controlStyles:
       - Width=Auto
       - MinWidth=0
       - HorizontalAlignment=3
-  - target: StartUI.StartSizingFrame[MinWidth=320] > * > StartUI.AllAppsPane
-    styles:
-      - Margin=0,29,-8,0
-  - target: StartUI.StartSizingFrame[MinWidth=392] > * > StartUI.AllAppsPane
-    styles:
-      - Margin=0,29,27,0
-  - target: StartUI.StartSizingFrame[MinWidth=480] > * > StartUI.AllAppsPane
-    styles:
-      - Margin=0,29,0,0
-  - target: StartUI.StartSizingFrame[MinWidth=648] > * > StartUI.AllAppsPane
-    styles:
-      - Margin=0,29,0,0
-  - target: StartUI.StartSizingFrame[MinWidth=752] > * > StartUI.AllAppsPane
-    styles:
-      - Margin=0,29,0,0
   - target: StartUI.AllAppsPane
     styles:
-      - Padding=12,0,0,0
+      - Margin=12,29,0,0
       - FontWeight=SemiBold
       - FontFamily=$fontFamily
   - target: StartUI.AllAppsGridListViewItem > Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter@CommonStates > Grid
@@ -990,13 +980,14 @@ controlStyles:
   - target: TextBlock#ErrorBadge
     styles:
       - Text=
+      - FontSize=14
       - FontFamily=$glyph
       - Foreground:=$errorBadge
       - VerticalAlignment=0
       - Margin=0,8,0,0
   - target: TextBlock#Badge
     styles:
-      - Text=
+      - Text=
       - FontSize=12
       - FontFamily=$glyph
       - Foreground:=$accentButtonNormal
@@ -1004,7 +995,7 @@ controlStyles:
       - Margin=0,8,0,0
   - target: TextBlock#Incoming_Badge
     styles:
-      - Text=
+      - Text=
       - FontSize=12
       - FontFamily=$glyph
       - Foreground:=$accentButtonNormal
