@@ -91,7 +91,7 @@ styleConstants:
   - tilesBorderBrushPointerOver=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPointerOver}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPointerOver}" Offset="1" /></LinearGradientBrush>
   - tilesBorderBrushPressed=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource TilesBorderBrushTopGradientPressed}" Offset="0.0" /><GradientStop Color="{ThemeResource TilesBorderBrushBottomGradientPressed}" Offset="1" /></LinearGradientBrush>
   - textboxBorderHover=<SolidColorBrush Color="{ThemeResource TextBoxBorderBrushHover}" />
-  - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.6" /><GradientStop Color="{ThemeResource AccentColor}" Offset="1" /></LinearGradientBrush>
+  - textboxBorderFocused=<LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1"><GradientStop Color="{ThemeResource SystemChromeMediumHighColor}" Offset="0.8" /><GradientStop Color="{ThemeResource AccentColor}" Offset="0.8" /></LinearGradientBrush>
   - errorBadge=<SolidColorBrush Color="{ThemeResource ErrorBadge}" />
   - fontFamily=Segoe UI Variable
   - glyph=Segoe Fluent Icons
@@ -173,7 +173,7 @@ controlStyles:
     styles:
       - MinWidth=376
       - MinHeight=149
-      - Background:=$background
+      - Background:=<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1"><GradientStop Color="{ThemeResource AcrylicBG}" Offset="0.45" /><GradientStop Color="{ThemeResource DialogBottomPanelBorder}" Offset="0.45" /><GradientStop Color="{ThemeResource DialogBottomPanelBackground}" Offset="0.46" /></LinearGradientBrush>
       - BorderBrush:=$borderBrush
       - CornerRadius=8
   - target: StartUI.UninstallFlyoutControl > StackPanel > TextBlock
@@ -323,11 +323,13 @@ controlStyles:
       - MinHeight=30
   - target: StackPanel > Button#DeleteButton
     styles:
+      - Margin=0,23,10,0
       - CornerRadius=4
       - MinWidth=150
       - Height=32
   - target: Button#CancelButton
     styles:
+      - Margin=0,23,0,0
       - CornerRadius=4
       - MinWidth=150
       - Height=32
@@ -606,10 +608,6 @@ controlStyles:
       - Background@SelectedPressed:=$menuPressed
       - Background@SelectedPointerOver:=$menuPointerOver
       - BorderBrush=Transparent
-  - target: Border#PopupBorder
-    styles:
-      - Background:=$background
-      - CornerRadius=8
   - target: FlyoutPresenter
     styles:
       - CornerRadius=8
@@ -872,7 +870,9 @@ controlStyles:
       - Foreground:=<SolidColorBrush Color="{ThemeResource SystemBaseHighColor}" />
   - target: JumpViewUI.ControlHostMenuFlyoutPresenter
     styles:
-      - Background:=$background
+      - Background:=<LinearGradientBrush StartPoint="0,0.5" EndPoint="0,1"><GradientStop Color="{ThemeResource AcrylicBG}" Offset="0.275" /><GradientStop Color="{ThemeResource DialogBottomPanelBorder}" Offset="0.275" /><GradientStop Color="{ThemeResource DialogBottomPanelBackground}" Offset="0.285" /></LinearGradientBrush>
+      - BorderBrush:=$borderBrush
+      - MinHeight=189
   - target: StartUI.AllAppsGridListViewItem
     styles:
       - CornerRadius=6
@@ -1065,5 +1065,9 @@ themeResourceVariables:
   - TextBoxBorderBrushHover@Light=#0D000000
   - TextBoxBG@Dark={ThemeResource SystemChromeLowColor}
   - TextBoxBG@Light={ThemeResource SystemAltHighColor}
+  - DialogBottomPanelBackground@Dark={ThemeResource SystemChromeLowColor}
+  - DialogBottomPanelBackground@Light={ThemeResource SystemChromeMediumColor}
+  - DialogBottomPanelBorder@Dark=#141414
+  - DialogBottomPanelBorder@Light={ThemeResource SystemChromeHighColor}
 ```
 </details>
