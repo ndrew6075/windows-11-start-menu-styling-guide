@@ -45,7 +45,6 @@ If you're already using the Windows 10 Start menu, you can skip this step.
 
 ![Screenshot](search_offset.png)
 
-
 ## Unsupported configurations/settings
 * Windows 10 (partially supported but never fully supported).
 * Fullscreen Start menu (ExplorerPatcher).
@@ -230,7 +229,6 @@ controlStyles:
       - Background@PressedSelected:=$listPressed
       - Background@PointerOverSelected:=$listPointerOver
       - CornerRadius=6
-      - BorderThickness=1
   - target: Button#PinButton > Grid@CommonStates
     styles:
       - Background@PointerOver:=$menuPointerOver
@@ -454,11 +452,11 @@ controlStyles:
       - Opacity@Pressed=0.75
   - target: StartUI.NavigationPaneButton#PowerButton > ContentPresenter@CommonStates > * > FontIcon
     styles:
-      - Margin=-13,0,0,0
+      - Margin=-12,0,0,0
       - Opacity@Pressed=0.75
   - target: StartUI.NavigationPaneButton#UserTileButton > ContentPresenter@CommonStates > StartUI.NavigationPaneItemPanel > Grid
     styles:
-      - Margin=-14,0,0,0
+      - Margin=-13,0,0,0
       - Opacity@Pressed=0.75
   - target: JumpViewUI.JumpListCategoryHeaderControl > Grid > TextBlock#HeadingTextBlock
     styles:
@@ -911,6 +909,12 @@ controlStyles:
   - target: TextBlock#ShutdownNoChoicesTextBlock
     styles:
       - Margin=0,0,0,1
+  - target: Border#GlideAnimationContainer
+    styles:
+      - CornerRadius=8
+  - target: Grid#FlipAnimationContainer
+    styles:
+      - CornerRadius=8
 themeResourceVariables:
   - AccentColor@Dark={ThemeResource SystemAccentColorLight2}
   - AccentColor@Light={ThemeResource SystemAccentColorDark1}
